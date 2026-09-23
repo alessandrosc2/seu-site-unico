@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 export function PricingSection() {
-  const [includeBump, setIncludeBump] = useState(false);
+  const [includeBump1, setIncludeBump1] = useState(false);
+  const [includeBump2, setIncludeBump2] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showExitModal, setShowExitModal] = useState(false);
   const [exitModalDismissed, setExitModalDismissed] = useState(false);
@@ -42,7 +43,10 @@ export function PricingSection() {
   ];
 
   const handleCheckout = (planName: string, basePrice: number) => {
-    const finalPrice = includeBump ? basePrice + 17.90 : basePrice;
+    let bumpTotal = 0;
+    if (includeBump1) bumpTotal += 9.90;
+    if (includeBump2) bumpTotal += 9.90;
+    const finalPrice = basePrice + bumpTotal;
     toast.success(`Redirecionando para checkout seguro do plano ${planName} (R$ ${finalPrice.toFixed(2).replace('.', ',')})`);
   };
 
@@ -143,7 +147,7 @@ export function PricingSection() {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span><strong>Fase 4:</strong> Trilha Renda Extra (Venda de sites R$ 200 a R$ 800)</span>
+                  <span><strong>Fase 4:</strong> Trilha Renda Extra (A partir de R$ 200 por projeto)</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-cyan-400 shrink-0" />
@@ -161,23 +165,57 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* Order Bump Checkbox */}
-        <div className="max-w-2xl mx-auto p-5 rounded-2xl bg-slate-900/90 border border-amber-500/40 backdrop-blur-md mb-16 shadow-lg">
-          <label className="flex items-start gap-3.5 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={includeBump}
-              onChange={(e) => setIncludeBump(e.target.checked)}
-              className="mt-1 w-5 h-5 rounded border-amber-500 text-amber-500 accent-amber-400 shrink-0 cursor-pointer"
-            />
-            <div className="text-xs sm:text-sm">
-              <span className="font-bold text-amber-300 uppercase tracking-wide mr-2">ADICIONAR:</span>
-              <span className="text-white font-bold">Kit de 02 prompts para melhorar as imagens do seu negócio + Programação de 30 dias para postar nas redes sociais (+ R$ 17,90)</span>
-              <p className="text-slate-200 mt-1.5 leading-relaxed font-normal">
-                Receba prompts especializados para gerar fotos ultraprofissionais dos seus produtos e serviços com IA, além de um calendário completo de 30 dias com ideias de posts estratégicos para suas redes sociais.
-              </p>
-            </div>
-          </label>
+        {/* Order Bumps Container (2 Bumps a R$ 9,90 cada) */}
+        <div className="max-w-2xl mx-auto space-y-4 mb-16">
+          
+          {/* Order Bump 1: Textos e Templates */}
+          <div className={cn(
+            "p-5 rounded-2xl border backdrop-blur-md transition-all shadow-lg",
+            includeBump1 
+              ? "bg-slate-900 border-amber-400/80 shadow-amber-950/40" 
+              : "bg-slate-900/80 border-slate-800 hover:border-slate-700"
+          )}>
+            <label className="flex items-start gap-3.5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={includeBump1}
+                onChange={(e) => setIncludeBump1(e.target.checked)}
+                className="mt-1 w-5 h-5 rounded border-amber-500 text-amber-500 accent-amber-400 shrink-0 cursor-pointer"
+              />
+              <div className="text-xs sm:text-sm">
+                <span className="font-bold text-amber-300 uppercase tracking-wide mr-2">ADICIONAR:</span>
+                <span className="text-white font-bold">Kit de Textos e Templates Prontos (+ R$ 9,90)</span>
+                <p className="text-slate-200 mt-1.5 leading-relaxed font-normal">
+                  Leve mais de 50 variações de chamadas para ação, copys persuasivas para WhatsApp e modelos de layouts prontos para duplicar.
+                </p>
+              </div>
+            </label>
+          </div>
+
+          {/* Order Bump 2: Prompts de Imagens + 30 dias de Redes Sociais */}
+          <div className={cn(
+            "p-5 rounded-2xl border backdrop-blur-md transition-all shadow-lg",
+            includeBump2 
+              ? "bg-slate-900 border-cyan-400/80 shadow-cyan-950/40" 
+              : "bg-slate-900/80 border-slate-800 hover:border-slate-700"
+          )}>
+            <label className="flex items-start gap-3.5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={includeBump2}
+                onChange={(e) => setIncludeBump2(e.target.checked)}
+                className="mt-1 w-5 h-5 rounded border-cyan-500 text-cyan-500 accent-cyan-400 shrink-0 cursor-pointer"
+              />
+              <div className="text-xs sm:text-sm">
+                <span className="font-bold text-cyan-300 uppercase tracking-wide mr-2">ADICIONAR:</span>
+                <span className="text-white font-bold">Kit de 02 prompts para melhorar as imagens do seu negócio + Programação de 30 dias para postar nas redes sociais (+ R$ 9,90)</span>
+                <p className="text-slate-200 mt-1.5 leading-relaxed font-normal">
+                  Receba prompts especializados para gerar fotos ultraprofissionais dos seus produtos e serviços com IA, além de um calendário completo de 30 dias com ideias de posts estratégicos para suas redes sociais.
+                </p>
+              </div>
+            </label>
+          </div>
+
         </div>
 
         {/* Alternative Route — Done For You (WhatsApp) */}

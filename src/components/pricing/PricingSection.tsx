@@ -319,7 +319,7 @@ export function PricingSection() {
               }}
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 text-slate-950 font-bold text-sm hover:brightness-110 shadow-lg"
             >
-              Aproveitar Desconto de Saída
+              Aproveitar desconto especial
             </button>
           </div>
         </div>

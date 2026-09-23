@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { WordRevealSection } from "@/components/scrollytelling/WordRevealSection";
 import { ScrollGlobe } from "@/components/ui/landing-page";
+import { InteractiveSelector } from "@/components/ui/interactive-selector";
 import { AudienceSwitcher } from "@/components/scrollytelling/AudienceSwitcher";
 import { PricingSection } from "@/components/pricing/PricingSection";
 
@@ -22,6 +23,9 @@ export default function Home() {
 
       {/* Beat 3: As 4 Fases do Método Guiado com 3D CSS Globe Scrollytelling */}
       <ScrollGlobe />
+
+      {/* Showcase de Nichos & Profissionais — Seletor Interativo Accordion */}
+      <InteractiveSelector />
 
       {/* Beat 4: Dois Públicos, Um Só Produto */}
       <AudienceSwitcher />

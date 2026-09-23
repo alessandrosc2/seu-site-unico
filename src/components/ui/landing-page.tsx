@@ -3,8 +3,24 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react"; 
 import Globe from "@/components/ui/globe";
 import { cn } from "@/lib/utils";
-import { Sparkles, ArrowRight, CheckCircle2, Copy, Globe2, Search, TrendingUp } from "lucide-react";
+import { 
+  Sparkles, 
+  Globe2, 
+  Search, 
+  TrendingUp, 
+  CheckCircle2, 
+  ArrowRight, 
+  ShieldCheck,
+  Zap,
+  Copy,
+  ExternalLink
+} from "lucide-react";
 import { toast } from "sonner";
+
+export interface MethodFeature {
+  title: string;
+  description: string;
+}
 
 export interface MethodAction {
   label: string;
@@ -12,21 +28,14 @@ export interface MethodAction {
   onClick?: () => void;
 }
 
-export interface MethodFeature {
-  title: string;
-  description: string;
-}
-
 export interface MethodSection {
   id: string;
-  phaseNumber: string;
-  badge: string;
+  badge?: string;
   title: string;
   subtitle?: string;
   description: string;
   align?: "left" | "center" | "right";
   icon?: React.ReactNode;
-  promptPreview?: string;
   features?: MethodFeature[];
   actions?: MethodAction[];
 }
@@ -45,94 +54,166 @@ export interface ScrollGlobeProps {
 
 const defaultGlobeConfig = {
   positions: [
-    { top: "45%", left: "75%", scale: 1.3 },   // Fase 1: Direita, equilibrado
-    { top: "30%", left: "25%", scale: 1.1 },   // Fase 2: Esquerda, sutil
-    { top: "50%", left: "78%", scale: 1.4 },   // Fase 3: Direita, zoom
-    { top: "50%", left: "50%", scale: 1.8 },   // Fase 4: Centro, grande backdrop
+    { top: "45%", left: "75%", scale: 1.35 },  // Fase 1: Direita, equilibrado
+    { top: "25%", left: "30%", scale: 1.1 },   // Fase 2: Esquerda / topo, sutil
+    { top: "50%", left: "80%", scale: 1.45 },  // Fase 3: Direita, zoom focado
+    { top: "48%", left: "50%", scale: 1.7 },   // Fase 4: Centro, grande backdrop
   ]
 };
 
 const parsePercent = (str: string): number => parseFloat(str.replace("%", ""));
 
-export function ScrollGlobe({ sections, globeConfig = defaultGlobeConfig, className }: ScrollGlobeProps) {
+export function ScrollGlobe({ 
+  sections, 
+  globeConfig = defaultGlobeConfig, 
+  className 
+}: ScrollGlobeProps) {
   const methodSections: MethodSection[] = useMemo(() => sections || [
     {
       id: "fase-1-construir",
-      phaseNumber: "Fase 01",
-      badge: "Construir",
-      title: "O Briefing Mestre & Prompts",
-      subtitle: "Construção Guiada com IA",
-      description: "Esqueça modelos genéricos. O formulário guiado extrai a verdadeira alma, diferenciais, serviços e estilo visual do seu negócio para gerar prompts específicos.",
+      badge: "Fase 01 — Construir",
+      title: "O Briefing Mestre & IA",
+      subtitle: "Estrutura Personalizada",
+      description: "Esqueça modelos prontos e sites genéricos. O formulário guiado extrai a essência, diferenciais, serviços e estilo visual do seu negócio para criar prompts precisos de inteligência artificial.",
       align: "left",
-      icon: <Sparkles className="w-5 h-5 text-blue-500" />,
-      promptPreview: "Atue como um Diretor de Design e crie a estrutura HTML/CSS personalizada para um negócio de [SERVIÇO] em [CIDADE] com a paleta [CORES] e foco em conversão no WhatsApp...",
+      icon: <Sparkles className="w-5 h-5 text-cyan-400" />,
       features: [
-        { title: "Briefing Mestre Inteligente", description: "Reúne nome, diferenciais, público, horários e links do seu negócio sem complicação." },
-        { title: "Direção Visual Única", description: "Prompts prontos para paletas de cores, tipografia, fotos e personalidade da sua marca." },
-        { title: "Revisão Mobile-First", description: "Checklist de responsividade, tamanhos de toque, espaçamento e leitura em celulares." }
+        { 
+          title: "Briefing Mestre Estruturado", 
+          description: "Reúne nome, diferenciais, serviços, público-alvo, horários e fotos da sua empresa sem complicação técnica." 
+        },
+        { 
+          title: "Prompts Prontos de Alta Conversão", 
+          description: "Gere copywriting persuasivo, estrutura de páginas e elementos visuais adaptados 100% à sua marca." 
+        },
+        { 
+          title: "Revisão e Otimização Mobile", 
+          description: "Garantia de layout impecável, botões clicáveis e leitura perfeita em todos os modelos de smartphones." 
+        }
       ],
       actions: [
-        { label: "Ver Modelo de Prompts", variant: "primary", onClick: () => { toast.success("Prompts desbloqueados no manual!"); } },
+        { 
+          label: "Ver Como Funciona", 
+          variant: "primary", 
+          onClick: () => {
+            const el = document.getElementById("nichos");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          } 
+        },
+        { 
+          label: "Copiar Exemplo de Prompt", 
+          variant: "secondary", 
+          onClick: () => {
+            navigator.clipboard.writeText("Atue como um Web Designer Sênior e crie a estrutura completa de uma página institucional focada em conversão para [Meu Negócio], destacando [Diferenciais] e chamada para o WhatsApp.");
+            toast.success("Exemplo de Prompt copiado com sucesso!");
+          } 
+        }
       ]
     },
     {
       id: "fase-2-publicar",
-      phaseNumber: "Fase 02",
-      badge: "Publicar",
+      badge: "Fase 02 — Publicar",
       title: "Domínio Próprio & WhatsApp",
-      subtitle: "No Ar em Minutos",
-      description: "Coloque seu site na internet com seu próprio nome (.com.br), certificado de segurança HTTPS e botão de WhatsApp 100% integrado para receber clientes.",
+      subtitle: "Presença Oficial no Ar",
+      description: "Coloque seu site na internet com seu próprio endereço oficial (.com.br), certificado de segurança SSL gratuito e botão de WhatsApp estratégico para transformar visitantes em clientes reais.",
       align: "right",
-      icon: <Globe2 className="w-5 h-5 text-indigo-500" />,
+      icon: <Globe2 className="w-5 h-5 text-blue-400" />,
       features: [
-        { title: "Domínio .com.br Descomplicado", description: "Passo a passo visual para registrar no Registro.br e conectar sem dor de cabeça." },
-        { title: "Google Meu Negócio Configurado", description: "Crie ou reivindique seu perfil local com horários, fotos e link direto para o site." },
-        { title: "Links e Conversão Testados", description: "Botão flutuante de WhatsApp com mensagem personalizada para fechar vendas." }
+        { 
+          title: "Registro de Domínio .com.br", 
+          description: "Passo a passo visual para registrar seu nome oficial no Registro.br e conectar ao site sem intermediários caros." 
+        },
+        { 
+          title: "Publicação Gratuita e Segura", 
+          description: "Hospede seu site em servidores globais ultrarrápidos com certificado HTTPS vitalício sem mensalidades abusivas." 
+        },
+        { 
+          title: "Conversão Direta no WhatsApp", 
+          description: "Botão flutuante com mensagem de abertura personalizada que guia o lead para fechar negócio." 
+        }
       ],
       actions: [
-        { label: "Como Configurar o Domínio", variant: "secondary", onClick: () => { toast.info("Guia de domínio disponível no passo a passo!"); } }
+        { 
+          label: "Conhecer os Planos", 
+          variant: "primary", 
+          onClick: () => {
+            const el = document.getElementById("pricing");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          } 
+        }
       ]
     },
     {
       id: "fase-3-ser-encontrado",
-      phaseNumber: "Fase 03",
-      badge: "Ser Encontrado",
-      title: "SEO Local & Google Search Console",
-      subtitle: "Indexação e Visibilidade",
-      description: "Apareça quando os clientes pesquisarem pelos seus serviços na sua cidade. Conecte Google Analytics, Search Console e garanta conformidade com a LGPD.",
+      badge: "Fase 03 — Ser Encontrado",
+      title: "SEO Local & Google",
+      subtitle: "Indexação & Visibilidade",
+      description: "Apareça para quem pesquisa pelos seus serviços no seu bairro e cidade. Integre o Google Meu Negócio, submeta seu sitemap ao Google Search Console e monitore métricas com total conformidade LGPD.",
       align: "left",
-      icon: <Search className="w-5 h-5 text-cyan-500" />,
+      icon: <Search className="w-5 h-5 text-emerald-400" />,
       features: [
-        { title: "SEO Local & Palavras-Chave", description: "Otimização de títulos, meta tags, velocidade e consistência de endereço/telefone." },
-        { title: "Google Search Console & Sitemap", description: "Envie seu sitemap para indexação acelerada nos motores de busca." },
-        { title: "Google Analytics & LGPD", description: "Métricas de visitantes em tempo real com aviso de privacidade configurado." }
+        { 
+          title: "Google Meu Negócio & Mapas", 
+          description: "Configuração completa do perfil local com horário, fotos, avaliações e link direto para o site." 
+        },
+        { 
+          title: "Google Search Console & Indexação", 
+          description: "Envio de sitemap XML para que as páginas do seu site apareçam rapidamente nas buscas orgânicas." 
+        },
+        { 
+          title: "SEO On-Page & Palavras-Chave", 
+          description: "Meta tags, títulos h1/h2 e dados estruturados otimizados para atrair clientes da sua região geográfica." 
+        }
       ],
       actions: [
-        { label: "Técnicas de SEO Inclusas", variant: "primary", onClick: () => { toast.success("Módulo de SEO desbloqueado no Plano Completo!"); } }
+        { 
+          label: "Desbloquear SEO no Manual", 
+          variant: "primary", 
+          onClick: () => {
+            const el = document.getElementById("pricing");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          } 
+        }
       ]
     },
     {
       id: "fase-4-renda-extra",
-      phaseNumber: "Fase 04",
-      badge: "Trilha Renda Extra",
-      title: "Venda Sites para Negócios Locais",
+      badge: "Fase 04 — Trilha Renda Extra",
+      title: "Fature Criando Sites",
       subtitle: "R$ 200 a R$ 800 por Projeto",
-      description: "Aprenda a encontrar empresas sem site no Google da sua região, faça abordagens profissionais e éticas (respeitando a LGPD) e fature prestando esse serviço.",
+      description: "Mais de metade dos negócios locais ainda não têm site. Domine o mesmo método para oferecer criação de sites profissionais na sua cidade, com propostas prontas e abordagem ética.",
       align: "center",
-      icon: <TrendingUp className="w-5 h-5 text-emerald-500" />,
+      icon: <TrendingUp className="w-5 h-5 text-purple-400" />,
       features: [
-        { title: "Prospecção Ética no Google Maps", description: "Como mapear negócios locais que só têm rede social e precisam de presença própria." },
-        { title: "Modelo de Proposta e Contrato", description: "Documentos prontos para enviar orçamentos claros e fechar clientes com segurança." },
-        { title: "Entrega e Pós-Venda", description: "Processo redondo para registrar o domínio no nome do cliente e fidelizar." }
+        { 
+          title: "Mapeamento Ético de Clientes", 
+          description: "Como encontrar negócios promissores no Google Maps sem presença web e abordar com respeito à LGPD." 
+        },
+        { 
+          title: "Modelos de Proposta & Contrato", 
+          description: "Modelos editáveis prontos para enviar orçamentos profissionais, garantias e fechar contratos com segurança." 
+        },
+        { 
+          title: "Entrega em 24h & Pós-Venda", 
+          description: "Fluxo validado para entregar o site configurado no nome do cliente e criar oportunidades de receita recorrente." 
+        }
       ],
       actions: [
         { 
           label: "Quero a Trilha Completa", 
           variant: "primary", 
           onClick: () => {
-            const el = document.getElementById("planos");
+            const el = document.getElementById("pricing");
             if (el) el.scrollIntoView({ behavior: "smooth" });
-          }
+          } 
+        },
+        { 
+          label: "Simular Meus Ganhos", 
+          variant: "secondary", 
+          onClick: () => {
+            const el = document.getElementById("calculadora");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          } 
         }
       ]
     }
@@ -154,25 +235,20 @@ export function ScrollGlobe({ sections, globeConfig = defaultGlobeConfig, classN
   }, [globeConfig.positions]);
 
   const updateScrollPosition = useCallback(() => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Calculate progress within this specific scrollytelling container
-    const totalHeight = rect.height - windowHeight;
-    const currentScroll = Math.max(0, -rect.top);
-    const progress = Math.min(Math.max(currentScroll / Math.max(totalHeight, 1), 0), 1);
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = Math.min(Math.max(scrollTop / docHeight, 0), 1);
     
     setScrollProgress(progress);
 
-    const viewportCenter = windowHeight / 2;
+    const viewportCenter = window.innerHeight / 2;
     let newActiveSection = 0;
     let minDistance = Infinity;
 
     sectionRefs.current.forEach((ref, index) => {
       if (ref) {
-        const sRect = ref.getBoundingClientRect();
-        const sectionCenter = sRect.top + sRect.height / 2;
+        const rect = ref.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
         const distance = Math.abs(sectionCenter - viewportCenter);
         
         if (distance < minDistance) {
@@ -191,6 +267,7 @@ export function ScrollGlobe({ sections, globeConfig = defaultGlobeConfig, classN
 
   useEffect(() => {
     let ticking = false;
+    
     const handleScroll = () => {
       if (!ticking) {
         animationFrameId.current = requestAnimationFrame(() => {
@@ -206,7 +283,9 @@ export function ScrollGlobe({ sections, globeConfig = defaultGlobeConfig, classN
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
   }, [updateScrollPosition]);
 
@@ -216,175 +295,196 @@ export function ScrollGlobe({ sections, globeConfig = defaultGlobeConfig, classN
     setGlobeTransform(initialTransform);
   }, [calculatedPositions]);
 
-  const copyPrompt = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Prompt copiado com sucesso! Cole na sua IA.");
-  };
-
   return (
     <div 
       ref={containerRef}
       id="metodo"
       className={cn(
-        "relative w-full overflow-hidden bg-[#070d1e] text-white py-12",
+        "relative w-full max-w-screen overflow-x-hidden min-h-screen bg-[#070d1e] text-slate-100",
         className
       )}
     >
-      {/* Background Starfield & Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,#1e295d_0%,#070d1e_70%)] pointer-events-none" />
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Dynamic Background Atmospheric Layers */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,#111e4d_0%,#070d1e_70%)] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Progress Bar */}
-      <div className="sticky top-0 left-0 w-full h-1 bg-white/10 z-50">
+      {/* Persistent Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-white/5 z-50">
         <div 
-          className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 will-change-transform shadow-[0_0_12px_rgba(59,130,246,0.8)]"
+          className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 will-change-transform shadow-[0_0_12px_rgba(6,182,212,0.8)]"
           style={{ 
             transform: `scaleX(${scrollProgress})`,
             transformOrigin: "left center",
-            transition: "transform 0.1s ease-out"
+            transition: "transform 0.15s ease-out"
           }}
         />
       </div>
 
-      {/* Lateral Sticky Navigator */}
-      <div className="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-5 bg-slate-900/60 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-2xl">
-        {methodSections.map((section, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              sectionRefs.current[index]?.scrollIntoView({ 
-                behavior: "smooth",
-                block: "center"
-              });
-            }}
-            className="group relative flex items-center justify-end"
-            aria-label={`Ir para ${section.badge}`}
-          >
-            <span className={cn(
-              "absolute right-7 px-2.5 py-1 rounded-md text-xs font-medium whitespace-nowrap transition-all duration-300 pointer-events-none",
-              "bg-slate-900/90 border border-white/10 text-slate-200 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0"
-            )}>
-              {section.phaseNumber}: {section.badge}
-            </span>
-            <div className={cn(
-              "w-3 h-3 rounded-full transition-all duration-300",
-              activeSection === index 
-                ? "bg-cyan-400 scale-125 shadow-[0_0_10px_#22d3ee]" 
-                : "bg-white/20 hover:bg-white/50"
-            )} />
-          </button>
-        ))}
+      {/* Enhanced Floating Right Navigation with auto-hiding labels */}
+      <div className="hidden sm:flex fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-40">
+        <div className="space-y-4 lg:space-y-6">
+          {methodSections.map((section, index) => {
+            const isCurrent = activeSection === index;
+            return (
+              <div key={section.id} className="relative group flex items-center justify-end">
+                {/* Auto-fading label on hover / active */}
+                <div
+                  className={cn(
+                    "nav-label absolute right-7 lg:right-9 top-1/2 -translate-y-1/2",
+                    "px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap",
+                    "bg-slate-900/90 text-slate-200 backdrop-blur-md border border-slate-700/80 shadow-2xl transition-all duration-300 pointer-events-none",
+                    isCurrent ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className={cn("w-1.5 h-1.5 rounded-full", isCurrent ? "bg-cyan-400 animate-pulse" : "bg-slate-500")} />
+                    <span>{section.badge || `Fase ${index + 1}`}</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => {
+                    sectionRefs.current[index]?.scrollIntoView({ 
+                      behavior: "smooth",
+                      block: "center"
+                    });
+                  }}
+                  className={cn(
+                    "relative w-3 h-3 rounded-full border-2 transition-all duration-300 hover:scale-125 focus:outline-none",
+                    isCurrent 
+                      ? "bg-cyan-400 border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.8)] scale-110" 
+                      : "bg-transparent border-slate-600 hover:border-cyan-400 hover:bg-cyan-400/20"
+                  )}
+                  aria-label={`Navegar para ${section.badge || `Fase ${index + 1}`}`}
+                />
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Navigation track line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent -translate-x-1/2 -z-10" />
       </div>
 
-      {/* Ultra-smooth Dynamic 3D CSS Globe */}
+      {/* Ultra-smooth 3D Globe with responsive scaling */}
       <div
-        className="fixed z-10 pointer-events-none will-change-transform transition-all duration-[1200ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
+        className="fixed z-10 pointer-events-none will-change-transform transition-all duration-[1300ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
         style={{
           transform: globeTransform,
-          opacity: activeSection === 3 ? 0.35 : 0.88,
+          filter: `opacity(${activeSection === 3 ? 0.35 : 0.9})`,
         }}
       >
-        <div className="scale-75 sm:scale-90 lg:scale-100">
+        <div className="scale-75 sm:scale-90 lg:scale-105 filter drop-shadow-[0_0_40px_rgba(6,182,212,0.25)]">
           <Globe />
         </div>
       </div>
 
-      {/* Sections Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {methodSections.map((section, index) => (
+      {/* Dynamic Scrollytelling Sections */}
+      {methodSections.map((section, index) => {
+        return (
           <section
             key={section.id}
             ref={(el) => { sectionRefs.current[index] = el; }}
             className={cn(
-              "min-h-[90vh] flex flex-col justify-center py-20",
+              "relative min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-16 z-20 py-20 sm:py-24",
+              "w-full max-w-full overflow-hidden",
               section.align === "center" && "items-center text-center",
               section.align === "right" && "items-end text-right",
               section.align !== "center" && section.align !== "right" && "items-start text-left"
             )}
           >
-            <div className="w-full max-w-xl lg:max-w-2xl bg-slate-900/40 backdrop-blur-xl border border-white/10 p-8 sm:p-10 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
-              
-              {/* Badge & Phase */}
+            <div className={cn(
+              "w-full max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl will-change-transform transition-all duration-700",
+              "opacity-100 translate-y-0"
+            )}>
+              {/* Badge */}
               <div className={cn(
-                "flex items-center gap-3 mb-5",
-                section.align === "center" && "justify-center",
-                section.align === "right" && "justify-end"
+                "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-5",
+                "bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 backdrop-blur-md shadow-sm",
+                section.align === "center" && "mx-auto",
+                section.align === "right" && "ml-auto"
               )}>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-cyan-300 border border-blue-400/30">
-                  {section.icon}
-                  {section.phaseNumber}
-                </span>
-                <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
-                  {section.badge}
-                </span>
+                {section.icon}
+                <span>{section.badge}</span>
               </div>
 
               {/* Title & Subtitle */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-white">
-                {section.title}
+              <h2 className={cn(
+                "font-black tracking-tight mb-5 leading-[1.1] text-white",
+                index === 0 
+                  ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl" 
+                  : "text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+              )}>
+                {section.subtitle ? (
+                  <div className="space-y-1.5">
+                    <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent block">
+                      {section.title}
+                    </span>
+                    <span className="text-cyan-400 text-[0.55em] font-semibold tracking-wide uppercase block">
+                      {section.subtitle}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
+                    {section.title}
+                  </span>
+                )}
               </h2>
-              {section.subtitle && (
-                <p className="text-cyan-400 font-medium text-sm sm:text-base tracking-wide uppercase mb-4">
-                  {section.subtitle}
-                </p>
-              )}
 
               {/* Description */}
-              <p className="text-slate-300 leading-relaxed text-base sm:text-lg mb-8 font-light">
-                {section.description}
-              </p>
+              <div className={cn(
+                "text-slate-300/90 leading-relaxed mb-8 sm:mb-10 text-base sm:text-lg lg:text-xl font-normal max-w-2xl",
+                section.align === "center" ? "mx-auto text-center" : "",
+                section.align === "right" ? "ml-auto text-right" : ""
+              )}>
+                <p>{section.description}</p>
+              </div>
 
-              {/* Prompt Box Preview (Fase 1) */}
-              {section.promptPreview && (
-                <div className="mb-8 p-4 rounded-2xl bg-black/50 border border-cyan-500/30 font-mono text-xs text-cyan-200/90 relative group">
-                  <div className="flex items-center justify-between mb-2 pb-2 border-b border-white/10 text-[10px] text-slate-400">
-                    <span>EXEMPLO DE PROMPT GUIADO</span>
-                    <button 
-                      onClick={() => copyPrompt(section.promptPreview || "")}
-                      className="flex items-center gap-1 text-cyan-300 hover:text-white transition-colors"
-                    >
-                      <Copy className="w-3 h-3" /> Copiar
-                    </button>
-                  </div>
-                  <p className="line-clamp-3 italic">{section.promptPreview}</p>
-                </div>
-              )}
-
-              {/* Features List */}
+              {/* Feature Cards */}
               {section.features && (
-                <div className="grid gap-3.5 mb-8 text-left">
-                  {section.features.map((feature) => (
-                    <div 
+                <div className="grid gap-3.5 sm:gap-4 mb-8 sm:mb-10 text-left">
+                  {section.features.map((feature, fIndex) => (
+                    <div
                       key={feature.title}
-                      className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-blue-500/30 transition-colors"
+                      className={cn(
+                        "group p-4 sm:p-5 rounded-xl border transition-all duration-300",
+                        "bg-slate-900/70 backdrop-blur-md border-slate-800/80 hover:border-cyan-500/40 hover:bg-slate-900/90 hover:shadow-lg hover:shadow-cyan-950/40"
+                      )}
                     >
-                      <CheckCircle2 className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                      <div>
-                        <h3 className="font-semibold text-white text-sm sm:text-base">{feature.title}</h3>
-                        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{feature.description}</p>
+                      <div className="flex items-start gap-3.5">
+                        <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 group-hover:scale-125 transition-transform" />
+                        <div className="space-y-1 min-w-0">
+                          <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-cyan-300 transition-colors">
+                            {feature.title}
+                          </h3>
+                          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Actions Buttons */}
+              {/* Actions & Buttons */}
               {section.actions && (
                 <div className={cn(
-                  "flex flex-wrap gap-3",
+                  "flex flex-col sm:flex-row flex-wrap gap-3.5 sm:gap-4",
                   section.align === "center" && "justify-center",
-                  section.align === "right" && "justify-end"
+                  section.align === "right" && "justify-end",
+                  (!section.align || section.align === "left") && "justify-start"
                 )}>
-                  {section.actions.map((action) => (
+                  {section.actions.map((action, actionIdx) => (
                     <button
                       key={action.label}
                       onClick={action.onClick}
                       className={cn(
-                        "inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 active:scale-95 shadow-lg",
+                        "inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base cursor-pointer shadow-lg",
                         action.variant === "primary"
-                          ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] hover:brightness-110"
-                          : "bg-white/10 text-slate-200 border border-white/15 hover:bg-white/20"
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-cyan-950/50 hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
+                          : "border border-slate-700 bg-slate-900/80 text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-600 active:scale-[0.98]"
                       )}
                     >
                       <span>{action.label}</span>
@@ -393,15 +493,12 @@ export function ScrollGlobe({ sections, globeConfig = defaultGlobeConfig, classN
                   ))}
                 </div>
               )}
-
             </div>
           </section>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }
 
-export default function GlobeScrollDemo() {
-  return <ScrollGlobe />;
-}
+export default ScrollGlobe;

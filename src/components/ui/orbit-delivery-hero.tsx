@@ -723,10 +723,10 @@ function PlanetScene({ motion, active, auto, reduced, onReady }) {
       gl={{ antialias: true, alpha: true }}
     >
       <ResponsiveCamera />
-      <ambientLight intensity={0.9} />
-      <hemisphereLight args={["#f1f5ff", "#8aabc5", 1.4]} />
-      <directionalLight position={[-3, 5, 5]} intensity={2.6} color="#fff8f1" />
-      <directionalLight position={[3, 2, -2]} intensity={1.8} color="#c5deff" />
+      <ambientLight intensity={1.4} />
+      <hemisphereLight args={["#67e8f9", "#070d1e", 2.2]} />
+      <directionalLight position={[-3, 5, 5]} intensity={3.6} color="#ffffff" />
+      <directionalLight position={[3, 2, -2]} intensity={2.4} color="#38bdf8" />
       <World2 motion={motion} auto={auto} reduced={reduced} onReady={onReady} />
     </Canvas>
   );
@@ -970,56 +970,56 @@ function StoryDialog({ story, onClose }) {
 }
 
 const css = `
-.orbit-delivery{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#080e2b;background:#f6f9ff;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-weight:400;color-scheme:light;width:100%;isolation:isolate;--orbit-bg:radial-gradient(ellipse at 6% 15%,#fffefa 0%,#fbfcff 38%,#f0f6ff 100%);--orbit-ink:#080e2b;--orbit-muted:#7a87aa;--orbit-nav:#4d5a83;--orbit-accent:#4a72e7;--orbit-cloud:1;color:var(--orbit-ink)}
-.orbit-delivery *{box-sizing:border-box}.orbit-delivery{margin:0}.orbit-delivery button,.orbit-delivery a{-webkit-tap-highlight-color:transparent}.orbit-delivery button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}.orbit-delivery button:focus-visible,.orbit-delivery a:focus-visible{outline:2px solid #4776ee;outline-offset:6px}.orbit-delivery a{color:inherit;text-decoration:none}.orbit-delivery svg{display:block}.orbit-delivery button svg{width:22px;height:22px}
+.orbit-delivery{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#f8fafc;background:#070d1e;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-weight:400;color-scheme:dark;width:100%;isolation:isolate;--orbit-bg:radial-gradient(ellipse at 20% 20%,#0d1738 0%,#070d1e 50%,#020617 100%);--orbit-ink:#ffffff;--orbit-muted:#94a3b8;--orbit-nav:#cbd5e1;--orbit-accent:#38bdf8;--orbit-cloud:0.4;color:var(--orbit-ink)}
+.orbit-delivery *{box-sizing:border-box}.orbit-delivery{margin:0}.orbit-delivery button,.orbit-delivery a{-webkit-tap-highlight-color:transparent}.orbit-delivery button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}.orbit-delivery button:focus-visible,.orbit-delivery a:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}.orbit-delivery a{color:inherit;text-decoration:none}.orbit-delivery svg{display:block}.orbit-delivery button svg{width:22px;height:22px}
 .orbit-delivery .page{height:100svh;min-height:760px;position:relative;overflow:hidden;background:var(--orbit-bg);display:flex;flex-direction:column}
 .orbit-delivery .site-header{height:104px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 6.5%;position:relative;z-index:5}
-.orbit-delivery .wordmark{display:flex;align-items:center;gap:13px;font-size:30px;font-weight:700;letter-spacing:-1.2px;color:var(--orbit-ink)}
+.orbit-delivery .wordmark{display:flex;align-items:center;gap:13px;font-size:30px;font-weight:700;letter-spacing:-1.2px;color:#ffffff}
 .orbit-delivery .wordmark>svg{width:35px;height:35px}
 .orbit-delivery .brand-type{display:flex;flex-direction:column;line-height:1;gap:4px}
-.orbit-delivery .brand-type small{font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#7c96cc}
+.orbit-delivery .brand-type small{font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#38bdf8}
 .orbit-delivery .site-header nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:40px;align-items:center}
 .orbit-delivery .site-header nav button{font-size:15px;color:var(--orbit-nav);padding:12px 0;transition:color .2s;font-weight:500}
-.orbit-delivery .site-header nav button:hover{color:#4574ec}
-.orbit-delivery .header-cta{background:#4673eb;color:white;border-radius:23px;padding:13px 25px;font-size:14px;font-weight:600;box-shadow:0 4px 14px rgba(70,115,235,0.25);transition:background .2s,transform .2s}
-.orbit-delivery .header-cta:hover{background:#345fda;transform:translateY(-1px)}
+.orbit-delivery .site-header nav button:hover{color:#38bdf8}
+.orbit-delivery .header-cta{background:linear-gradient(135deg,#06b6d4,#3b82f6);color:white;border-radius:23px;padding:13px 25px;font-size:14px;font-weight:600;box-shadow:0 4px 20px rgba(6,182,212,0.4);transition:all .2s}
+.orbit-delivery .header-cta:hover{background:linear-gradient(135deg,#0891b2,#2563eb);transform:translateY(-1px);box-shadow:0 6px 24px rgba(6,182,212,0.6)}
 .orbit-delivery main{flex:1;min-height:0;display:flex}
 .orbit-delivery .hero{width:100%;position:relative}
 .orbit-delivery .hero-copy{position:relative;z-index:3;margin-left:6.5%;padding-top:clamp(70px,11vh,135px);width:46%;pointer-events:none}
 .orbit-delivery .hero-copy button{pointer-events:auto}
-.orbit-delivery .eyebrow{text-transform:uppercase;letter-spacing:.32em;font-size:12px;font-weight:700;color:#7a94df;margin:0 0 18px}
-.orbit-delivery h1{font-size:clamp(48px,4.8vw,80px);font-weight:800;letter-spacing:-.045em;line-height:1.06;margin:0 0 22px;color:#080e2b}
-.orbit-delivery h1 em{font-style:italic;font-weight:400;color:var(--orbit-accent);font-family:Georgia,serif}
+.orbit-delivery .eyebrow{text-transform:uppercase;letter-spacing:.32em;font-size:12px;font-weight:700;color:#38bdf8;margin:0 0 18px}
+.orbit-delivery h1{font-size:clamp(48px,4.8vw,80px);font-weight:800;letter-spacing:-.045em;line-height:1.06;margin:0 0 22px;color:#ffffff}
+.orbit-delivery h1 em{font-style:italic;font-weight:400;color:#38bdf8;font-family:Georgia,serif;text-shadow:0 0 30px rgba(56,189,248,0.5)}
 .orbit-delivery .hero-description{color:var(--orbit-muted);font-size:clamp(16px,1.2vw,19px);line-height:1.5;letter-spacing:-.2px;margin:0 0 28px;max-width:440px}
-.orbit-delivery .explore-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:32px;background:#4773ec;color:white;font-size:16px;font-weight:600;min-height:54px;box-shadow:0 8px 24px rgba(71,115,236,0.28);transition:all .2s}
-.orbit-delivery .explore-button:hover{background:#345fda;transform:translateY(-2px);box-shadow:0 12px 28px rgba(71,115,236,0.35)}
+.orbit-delivery .explore-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:32px;background:linear-gradient(135deg,#06b6d4,#2563eb);color:white;font-size:16px;font-weight:600;min-height:54px;box-shadow:0 8px 30px rgba(6,182,212,0.45);transition:all .2s}
+.orbit-delivery .explore-button:hover{background:linear-gradient(135deg,#0891b2,#1d4ed8);transform:translateY(-2px);box-shadow:0 12px 36px rgba(6,182,212,0.6)}
 .orbit-delivery .visual-column{position:absolute;right:-5%;top:0;width:76%;height:calc(100% + 12px);z-index:1}
 .orbit-delivery .planet-stage{height:100%;width:100%;position:relative;cursor:grab;touch-action:none;user-select:none;outline:none}
 .orbit-delivery .planet-stage.dragging{cursor:grabbing}
-.orbit-delivery .planet-caption{position:absolute;right:6.2%;top:17%;z-index:3;width:160px;pointer-events:none;color:#a4b5d8;transition:opacity .2s}
-.orbit-delivery .planet-caption p{font-size:14px;line-height:1.35;font-style:italic;text-align:right;margin:0}
-.orbit-delivery .planet-caption svg{width:150px;height:140px;margin-top:-15px;margin-left:-25px}
-.orbit-delivery .cloud-bank{position:absolute;z-index:2;inset:auto -12% -90px 24%;height:250px;pointer-events:none;filter:blur(17px);opacity:var(--orbit-cloud)}
-.orbit-delivery .cloud-bank i{position:absolute;bottom:0;background:radial-gradient(ellipse at 42% 34%,#fffdfb 27%,#f3f7ff 59%,#e5edfc88 75%,transparent 80%);border-radius:50%}
+.orbit-delivery .planet-caption{position:absolute;right:6.2%;top:17%;z-index:3;width:160px;pointer-events:none;color:#64748b;transition:opacity .2s}
+.orbit-delivery .planet-caption p{font-size:14px;line-height:1.35;font-style:italic;text-align:right;margin:0;color:#94a3b8}
+.orbit-delivery .planet-caption svg{width:150px;height:140px;margin-top:-15px;margin-left:-25px;color:#38bdf8}
+.orbit-delivery .cloud-bank{position:absolute;z-index:2;inset:auto -12% -90px 24%;height:250px;pointer-events:none;filter:blur(24px);opacity:0.35}
+.orbit-delivery .cloud-bank i{position:absolute;bottom:0;background:radial-gradient(ellipse at 42% 34%,rgba(14,165,233,0.3) 27%,rgba(7,13,30,0.8) 59%,rgba(2,6,23,0.95) 75%,transparent 80%);border-radius:50%}
 .orbit-delivery .cloud-bank i:nth-child(1){width:390px;height:200px;left:0;bottom:-28px;transform:rotate(-25deg)}
 .orbit-delivery .cloud-bank i:nth-child(2){width:265px;height:195px;left:14%;bottom:32px}
 .orbit-delivery .cloud-bank i:nth-child(3){width:270px;height:170px;left:29%;bottom:-2px}
 .orbit-delivery .cloud-bank i:nth-child(4){width:350px;height:200px;right:7%;bottom:-20px}
 .orbit-delivery .cloud-bank i:nth-child(5){width:280px;height:215px;right:-2%;bottom:70px}
 .orbit-delivery .site-footer{position:absolute;bottom:35px;left:6.5%;right:5.1%;z-index:4;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none}
-.orbit-delivery .site-footer p{margin:0;text-transform:uppercase;font-size:10px;letter-spacing:.22em;line-height:1.8;color:#94a7d1;font-weight:600}
-.orbit-delivery .footer-left::before{content:'';display:block;width:25px;height:1px;background:#aebfdf;margin-bottom:12px}
+.orbit-delivery .site-footer p{margin:0;text-transform:uppercase;font-size:10px;letter-spacing:.22em;line-height:1.8;color:#64748b;font-weight:600}
+.orbit-delivery .footer-left::before{content:'';display:block;width:25px;height:1px;background:#334155;margin-bottom:12px}
 .orbit-delivery .footer-right{text-align:right}
-.orbit-delivery .motion-button{display:flex;gap:7px;align-items:center;color:#7b92be;pointer-events:auto;font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 12px;border-radius:16px;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px);border:1px solid rgba(216,227,255,0.8);transition:all .2s}
-.orbit-delivery .motion-button:hover{color:#4673eb;background:white}
-.orbit-delivery .loading{position:absolute;top:42%;left:25%;right:20%;display:flex;align-items:center;justify-content:center;gap:12px;color:#8197c4;font-size:13px;pointer-events:none}
-.orbit-delivery .loading>span{width:18px;height:18px;border:2px solid #d8e3ff;border-top-color:#648cf0;border-radius:50%;animation:loading 1s linear infinite}
+.orbit-delivery .motion-button{display:flex;gap:7px;align-items:center;color:#94a3b8;pointer-events:auto;font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 12px;border-radius:16px;background:rgba(15,23,42,0.7);backdrop-filter:blur(10px);border:1px solid rgba(51,65,85,0.8);transition:all .2s}
+.orbit-delivery .motion-button:hover{color:#38bdf8;background:rgba(30,41,59,0.9);border-color:rgba(56,189,248,0.6)}
+.orbit-delivery .loading{position:absolute;top:42%;left:25%;right:20%;display:flex;align-items:center;justify-content:center;gap:12px;color:#94a3b8;font-size:13px;pointer-events:none}
+.orbit-delivery .loading>span{width:18px;height:18px;border:2px solid #334155;border-top-color:#38bdf8;border-radius:50%;animation:loading 1s linear infinite}
 @keyframes loading{to{transform:rotate(360deg)}}
-.orbit-delivery .about-dialog{border:1px solid #dce5fa;border-radius:22px;padding:40px;max-width:500px;width:calc(100% - 32px);background:#f9fbff;color:#080e2b;box-shadow:0 25px 120px rgba(24,60,115,0.18)}
-.orbit-delivery .about-dialog::backdrop{background:rgba(26,49,92,0.35);backdrop-filter:blur(8px)}
-.orbit-delivery .about-dialog h2{font-size:32px;font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin:18px 0 16px}
-.orbit-delivery .about-dialog p{font-size:15px;line-height:1.7;color:var(--orbit-muted)}
-.orbit-delivery .close-dialog{position:absolute;right:18px;top:14px;font-size:26px;color:#8194bf;cursor:pointer}
+.orbit-delivery .about-dialog{border:1px solid #1e293b;border-radius:22px;padding:40px;max-width:500px;width:calc(100% - 32px);background:#0b112c;color:#ffffff;box-shadow:0 25px 120px rgba(0,0,0,0.8)}
+.orbit-delivery .about-dialog::backdrop{background:rgba(2,6,23,0.8);backdrop-filter:blur(12px)}
+.orbit-delivery .about-dialog h2{font-size:32px;font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin:18px 0 16px;color:#ffffff}
+.orbit-delivery .about-dialog p{font-size:15px;line-height:1.7;color:#94a3b8}
+.orbit-delivery .close-dialog{position:absolute;right:18px;top:14px;font-size:26px;color:#94a3b8;cursor:pointer}
 @media(max-width:900px){.orbit-delivery .site-header nav{display:none}.orbit-delivery .hero-copy{width:calc(100% - 40px);margin:0 20px;padding-top:20px}.orbit-delivery .visual-column{position:relative;width:120%;left:-10%;height:450px}}
 `;
 

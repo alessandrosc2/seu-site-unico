@@ -1,37 +1,30 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { WordRevealSection } from "@/components/scrollytelling/WordRevealSection";
 import { ScrollGlobe } from "@/components/ui/landing-page";
 import { InteractiveSelector } from "@/components/ui/interactive-selector";
 import { AudienceSwitcher } from "@/components/scrollytelling/AudienceSwitcher";
 import { PricingSection } from "@/components/pricing/PricingSection";
 
-const OrbitDeliveryHero = dynamic(
-  () => import("@/components/ui/orbit-delivery-hero"),
-  { ssr: false }
-);
-
 export default function Home() {
   return (
     <main className="w-full min-h-screen bg-[#070d1e] text-white">
-      {/* Beat 1: The 3D Interactive Hero World */}
-      <OrbitDeliveryHero />
-
-      {/* Beat 2: O Conflito Editorial & Comparativo Visual */}
-      <WordRevealSection />
-
-      {/* Beat 3: As 4 Fases do Método Guiado com 3D CSS Globe Scrollytelling */}
+      {/* Beat Principal: O Método Guiado das 4 Fases com o Globo 3D em Scrollytelling */}
       <ScrollGlobe />
 
-      {/* Showcase de Nichos & Profissionais — Seletor Interativo Accordion */}
-      <InteractiveSelector />
+      {/* Showcase de Nichos & Profissionais — Seletor Sanfonado Interativo */}
+      <div id="nichos">
+        <InteractiveSelector />
+      </div>
 
-      {/* Beat 4: Dois Públicos, Um Só Produto */}
-      <AudienceSwitcher />
+      {/* Dois Públicos, Um Só Produto & Calculadora de Renda Extra */}
+      <div id="calculadora">
+        <AudienceSwitcher />
+      </div>
 
-      {/* Beat 5: Tabela de Preços, Order Bump, Saída WhatsApp e FAQ */}
-      <PricingSection />
+      {/* Tabela de Preços, Order Bump, Saída WhatsApp e FAQ */}
+      <div id="pricing">
+        <PricingSection />
+      </div>
 
       {/* Modern Footer */}
       <footer className="py-12 border-t border-white/10 bg-[#050814] text-center text-xs text-slate-500">

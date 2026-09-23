@@ -54,10 +54,10 @@ export interface ScrollGlobeProps {
 
 const defaultGlobeConfig = {
   positions: [
-    { top: "45%", left: "75%", scale: 1.35 },  // Fase 1: Direita, equilibrado
-    { top: "25%", left: "30%", scale: 1.1 },   // Fase 2: Esquerda / topo, sutil
-    { top: "50%", left: "80%", scale: 1.45 },  // Fase 3: Direita, zoom focado
-    { top: "48%", left: "50%", scale: 1.7 },   // Fase 4: Centro, grande backdrop
+    { top: "50%", left: "75%", scale: 1.35 },  // Hero / Fase 1: Right side
+    { top: "22%", left: "50%", scale: 1.0 },   // Fase 2: Top Center (Screenshot 1)
+    { top: "50%", left: "85%", scale: 1.65 },  // Fase 3: Right side large (Screenshot 2)
+    { top: "50%", left: "50%", scale: 2.1 },   // Fase 4: Center backdrop (Screenshot 3)
   ]
 };
 
@@ -72,40 +72,40 @@ export function ScrollGlobe({
     {
       id: "fase-1-construir",
       badge: "Fase 01 — Construir",
-      title: "O Briefing Mestre & IA",
-      subtitle: "Estrutura Personalizada",
-      description: "Esqueça modelos prontos e sites genéricos. O formulário guiado extrai a essência, diferenciais, serviços e estilo visual do seu negócio para criar prompts precisos de inteligência artificial.",
+      title: "Crie o Site do Seu Negócio",
+      subtitle: "Construção Guiada com IA",
+      description: "Esqueça modelos genéricos. O formulário guiado extrai os diferenciais, serviços e estilo visual da sua empresa para criar prompts de IA sob medida.",
       align: "left",
       icon: <Sparkles className="w-5 h-5 text-cyan-400" />,
       features: [
         { 
-          title: "Briefing Mestre Estruturado", 
-          description: "Reúne nome, diferenciais, serviços, público-alvo, horários e fotos da sua empresa sem complicação técnica." 
+          title: "Briefing Mestre Inteligente", 
+          description: "Reúne nome, diferenciais, público, horários e links do seu negócio sem complicação técnica." 
         },
         { 
           title: "Prompts Prontos de Alta Conversão", 
-          description: "Gere copywriting persuasivo, estrutura de páginas e elementos visuais adaptados 100% à sua marca." 
+          description: "Copywriting persuasivo e design exclusivo gerados por inteligência artificial com a cara da sua marca." 
         },
         { 
-          title: "Revisão e Otimização Mobile", 
-          description: "Garantia de layout impecável, botões clicáveis e leitura perfeita em todos os modelos de smartphones." 
+          title: "Revisão Mobile-First", 
+          description: "Garantia de layout impecável e botões clicáveis em todos os smartphones." 
         }
       ],
       actions: [
         { 
-          label: "Ver Como Funciona", 
+          label: "Quero Meu Site Único", 
           variant: "primary", 
           onClick: () => {
-            const el = document.getElementById("nichos");
+            const el = document.getElementById("pricing");
             if (el) el.scrollIntoView({ behavior: "smooth" });
           } 
         },
         { 
-          label: "Copiar Exemplo de Prompt", 
+          label: "Ver Nichos Atendidos", 
           variant: "secondary", 
           onClick: () => {
-            navigator.clipboard.writeText("Atue como um Web Designer Sênior e crie a estrutura completa de uma página institucional focada em conversão para [Meu Negócio], destacando [Diferenciais] e chamada para o WhatsApp.");
-            toast.success("Exemplo de Prompt copiado com sucesso!");
+            const el = document.getElementById("nichos");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
           } 
         }
       ]
@@ -114,27 +114,13 @@ export function ScrollGlobe({
       id: "fase-2-publicar",
       badge: "Fase 02 — Publicar",
       title: "Domínio Próprio & WhatsApp",
-      subtitle: "Presença Oficial no Ar",
+      subtitle: "No Ar em Poucos Minutos",
       description: "Coloque seu site na internet com seu próprio endereço oficial (.com.br), certificado de segurança SSL gratuito e botão de WhatsApp estratégico para transformar visitantes em clientes reais.",
-      align: "right",
+      align: "center",
       icon: <Globe2 className="w-5 h-5 text-blue-400" />,
-      features: [
-        { 
-          title: "Registro de Domínio .com.br", 
-          description: "Passo a passo visual para registrar seu nome oficial no Registro.br e conectar ao site sem intermediários caros." 
-        },
-        { 
-          title: "Publicação Gratuita e Segura", 
-          description: "Hospede seu site em servidores globais ultrarrápidos com certificado HTTPS vitalício sem mensalidades abusivas." 
-        },
-        { 
-          title: "Conversão Direta no WhatsApp", 
-          description: "Botão flutuante com mensagem de abertura personalizada que guia o lead para fechar negócio." 
-        }
-      ],
       actions: [
         { 
-          label: "Conhecer os Planos", 
+          label: "Ver Passo a Passo", 
           variant: "primary", 
           onClick: () => {
             const el = document.getElementById("pricing");
@@ -146,9 +132,9 @@ export function ScrollGlobe({
     {
       id: "fase-3-ser-encontrado",
       badge: "Fase 03 — Ser Encontrado",
-      title: "SEO Local & Google",
-      subtitle: "Indexação & Visibilidade",
-      description: "Apareça para quem pesquisa pelos seus serviços no seu bairro e cidade. Integre o Google Meu Negócio, submeta seu sitemap ao Google Search Console e monitore métricas com total conformidade LGPD.",
+      title: "Apareça no Google",
+      subtitle: "SEO Local & Indexação",
+      description: "Conecte seu Google Meu Negócio, submeta o sitemap ao Google Search Console e seja encontrado quando clientes pesquisarem pelos seus serviços na sua região.",
       align: "left",
       icon: <Search className="w-5 h-5 text-emerald-400" />,
       features: [
@@ -167,7 +153,7 @@ export function ScrollGlobe({
       ],
       actions: [
         { 
-          label: "Desbloquear SEO no Manual", 
+          label: "Garantir Minha Vaga", 
           variant: "primary", 
           onClick: () => {
             const el = document.getElementById("pricing");
@@ -181,26 +167,12 @@ export function ScrollGlobe({
       badge: "Fase 04 — Trilha Renda Extra",
       title: "Fature Criando Sites",
       subtitle: "R$ 200 a R$ 800 por Projeto",
-      description: "Mais de metade dos negócios locais ainda não têm site. Domine o mesmo método para oferecer criação de sites profissionais na sua cidade, com propostas prontas e abordagem ética.",
+      description: "Mais de 50% das empresas locais ainda não têm site. Use o mesmo método para oferecer criação de sites na sua cidade com propostas prontas e abordagem ética.",
       align: "center",
       icon: <TrendingUp className="w-5 h-5 text-purple-400" />,
-      features: [
-        { 
-          title: "Mapeamento Ético de Clientes", 
-          description: "Como encontrar negócios promissores no Google Maps sem presença web e abordar com respeito à LGPD." 
-        },
-        { 
-          title: "Modelos de Proposta & Contrato", 
-          description: "Modelos editáveis prontos para enviar orçamentos profissionais, garantias e fechar contratos com segurança." 
-        },
-        { 
-          title: "Entrega em 24h & Pós-Venda", 
-          description: "Fluxo validado para entregar o site configurado no nome do cliente e criar oportunidades de receita recorrente." 
-        }
-      ],
       actions: [
         { 
-          label: "Quero a Trilha Completa", 
+          label: "Começar Agora", 
           variant: "primary", 
           onClick: () => {
             const el = document.getElementById("pricing");
@@ -208,7 +180,7 @@ export function ScrollGlobe({
           } 
         },
         { 
-          label: "Simular Meus Ganhos", 
+          label: "Simulador de Ganhos", 
           variant: "secondary", 
           onClick: () => {
             const el = document.getElementById("calculadora");
@@ -304,6 +276,32 @@ export function ScrollGlobe({
         className
       )}
     >
+      {/* Top Site Header Navigation */}
+      <header className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 sm:px-12 bg-[#070d1e]/80 backdrop-blur-md border-b border-white/10">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+            <Sparkles className="w-5 h-5 text-white" />
+          </div>
+          <span className="font-bold text-xl tracking-tight text-white">
+            Seu Site <span className="text-cyan-400">Único</span>
+          </span>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#metodo" className="hover:text-cyan-400 transition-colors">O Método</a>
+          <a href="#nichos" className="hover:text-cyan-400 transition-colors">Exemplos de Nichos</a>
+          <a href="#calculadora" className="hover:text-cyan-400 transition-colors">Renda Extra</a>
+          <a href="#pricing" className="hover:text-cyan-400 transition-colors">Planos & Preços</a>
+        </nav>
+
+        <a
+          href="#pricing"
+          className="px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs sm:text-sm font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-md shadow-cyan-500/25 hover:scale-105"
+        >
+          Começar Agora
+        </a>
+      </header>
+
       {/* Dynamic Background Atmospheric Layers */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,#111e4d_0%,#070d1e_70%)] pointer-events-none" />
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
@@ -333,7 +331,7 @@ export function ScrollGlobe({
                   className={cn(
                     "nav-label absolute right-7 lg:right-9 top-1/2 -translate-y-1/2",
                     "px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap",
-                    "bg-slate-900/90 text-slate-200 backdrop-blur-md border border-slate-700/80 shadow-2xl transition-all duration-300 pointer-events-none",
+                    "bg-slate-900/95 text-slate-200 backdrop-blur-md border border-slate-700/80 shadow-2xl transition-all duration-300 pointer-events-none",
                     isCurrent ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
                   )}
                 >
@@ -351,9 +349,9 @@ export function ScrollGlobe({
                     });
                   }}
                   className={cn(
-                    "relative w-3 h-3 rounded-full border-2 transition-all duration-300 hover:scale-125 focus:outline-none",
+                    "relative w-3 h-3 rounded-full border-2 transition-all duration-300 hover:scale-125 focus:outline-none cursor-pointer",
                     isCurrent 
-                      ? "bg-cyan-400 border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.8)] scale-110" 
+                      ? "bg-cyan-400 border-cyan-400 shadow-[0_0_14px_rgba(6,182,212,0.9)] scale-125" 
                       : "bg-transparent border-slate-600 hover:border-cyan-400 hover:bg-cyan-400/20"
                   )}
                   aria-label={`Navegar para ${section.badge || `Fase ${index + 1}`}`}
@@ -367,15 +365,15 @@ export function ScrollGlobe({
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent -translate-x-1/2 -z-10" />
       </div>
 
-      {/* Ultra-smooth 3D Globe with responsive scaling */}
+      {/* Ultra-smooth 3D Globe with responsive scaling & position shifts */}
       <div
-        className="fixed z-10 pointer-events-none will-change-transform transition-all duration-[1300ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
+        className="fixed top-0 left-0 z-10 pointer-events-none will-change-transform transition-all duration-[1400ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
         style={{
           transform: globeTransform,
-          filter: `opacity(${activeSection === 3 ? 0.35 : 0.9})`,
+          filter: `opacity(${activeSection === 3 ? 0.35 : 0.95})`,
         }}
       >
-        <div className="scale-75 sm:scale-90 lg:scale-105 filter drop-shadow-[0_0_40px_rgba(6,182,212,0.25)]">
+        <div className="scale-75 sm:scale-90 lg:scale-100 filter drop-shadow-[0_0_50px_rgba(6,182,212,0.3)]">
           <Globe />
         </div>
       </div>
@@ -387,7 +385,7 @@ export function ScrollGlobe({
             key={section.id}
             ref={(el) => { sectionRefs.current[index] = el; }}
             className={cn(
-              "relative min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-16 z-20 py-20 sm:py-24",
+              "relative min-h-screen flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 z-20 py-24 sm:py-32",
               "w-full max-w-full overflow-hidden",
               section.align === "center" && "items-center text-center",
               section.align === "right" && "items-end text-right",
@@ -439,6 +437,18 @@ export function ScrollGlobe({
                 section.align === "right" ? "ml-auto text-right" : ""
               )}>
                 <p>{section.description}</p>
+                {index === 0 && (
+                  <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-400 mt-6">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                      <span>Experiência Interativa 3D</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: "0.5s" }} />
+                      <span>Role para Explorar as 4 Fases</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Feature Cards */}

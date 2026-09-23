@@ -162,8 +162,8 @@ export function PricingSection() {
         </div>
 
         {/* Order Bump Checkbox */}
-        <div className="max-w-2xl mx-auto p-5 rounded-2xl bg-slate-900/90 border border-amber-500/40 backdrop-blur-md mb-16">
-          <label className="flex items-start gap-3 cursor-pointer">
+        <div className="max-w-2xl mx-auto p-5 rounded-2xl bg-slate-900/90 border border-amber-500/40 backdrop-blur-md mb-16 shadow-lg">
+          <label className="flex items-start gap-3.5 cursor-pointer">
             <input
               type="checkbox"
               checked={includeBump}
@@ -171,10 +171,10 @@ export function PricingSection() {
               className="mt-1 w-5 h-5 rounded border-amber-500 text-amber-500 accent-amber-400 shrink-0 cursor-pointer"
             />
             <div className="text-xs sm:text-sm">
-              <span className="font-bold text-amber-300 uppercase tracking-wide mr-2">Adicionar Order Bump:</span>
-              <span className="text-white font-semibold">Kit de Textos e Templates Prontos (+ R$ 17,90)</span>
-              <p className="text-slate-400 mt-1 leading-relaxed">
-                Leve mais de 50 variações de chamadas para ação, copys persuasivas para WhatsApp e modelos de layouts prontos para duplicar.
+              <span className="font-bold text-amber-300 uppercase tracking-wide mr-2">ADICIONAR:</span>
+              <span className="text-white font-bold">Kit de 02 prompts para melhorar as imagens do seu negócio + Programação de 30 dias para postar nas redes sociais (+ R$ 17,90)</span>
+              <p className="text-slate-200 mt-1.5 leading-relaxed font-normal">
+                Receba prompts especializados para gerar fotos ultraprofissionais dos seus produtos e serviços com IA, além de um calendário completo de 30 dias com ideias de posts estratégicos para suas redes sociais.
               </p>
             </div>
           </label>

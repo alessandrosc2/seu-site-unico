@@ -30,19 +30,19 @@ export function AudienceSwitcher() {
           <button
             onClick={() => setActiveTab("negocio")}
             className={cn(
-              "flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300",
+              "flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300 cursor-pointer",
               activeTab === "negocio"
                 ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
                 : "text-slate-400 hover:text-white"
             )}
           >
             <Briefcase className="w-4 h-4" />
-            Dono de Pequeno Negócio
+            Dono do Negócio
           </button>
           <button
             onClick={() => setActiveTab("renda")}
             className={cn(
-              "flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300",
+              "flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300 cursor-pointer",
               activeTab === "renda"
                 ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
                 : "text-slate-400 hover:text-white"
@@ -91,8 +91,8 @@ export function AudienceSwitcher() {
                   Enquanto uma agência cobra de R$ 1.500 a R$ 4.000 por um site simples, você cria o seu em poucas horas por uma fração desse valor.
                 </p>
                 <button 
-                  onClick={() => document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full py-3 rounded-xl bg-cyan-400 text-slate-950 font-bold text-sm hover:bg-cyan-300 transition-colors shadow-lg"
+                  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full py-3 rounded-xl bg-cyan-400 text-slate-950 font-bold text-sm hover:bg-cyan-300 transition-colors shadow-lg cursor-pointer"
                 >
                   Criar o Site do Meu Negócio
                 </button>
@@ -108,7 +108,7 @@ export function AudienceSwitcher() {
                   Ofereça sites para empresas da sua cidade
                 </h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-6 font-light">
-                  Aprenda a mapear empresas sem site pelo Google Maps, faça abordagens respeitando a LGPD e entregue sites profissionais cobrando de R$ 200 a R$ 800 cada.
+                  Aprenda a mapear empresas sem site pelo Google Maps, faça abordagens respeitando a LGPD e entregue sites profissionais cobrando a partir de R$ 200 cada.
                 </p>
                 <div className="space-y-3 text-sm text-slate-300">
                   <div className="flex items-center gap-2.5">

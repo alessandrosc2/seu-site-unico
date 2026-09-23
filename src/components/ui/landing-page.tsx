@@ -166,7 +166,7 @@ export function ScrollGlobe({
       id: "fase-4-renda-extra",
       badge: "Fase 04 — Trilha Renda Extra",
       title: "Fature Criando Sites",
-      subtitle: "R$ 200 a R$ 800 por Projeto",
+      subtitle: "A PARTIR DE R$ 200 POR PROJETO",
       description: "Mais de 50% das empresas locais ainda não têm site. Use o mesmo método para oferecer criação de sites na sua cidade com propostas prontas e abordagem ética.",
       align: "center",
       icon: <TrendingUp className="w-5 h-5 text-purple-400" />,
@@ -422,22 +422,22 @@ export function ScrollGlobe({
 
               {/* Title & Subtitle */}
               <h2 className={cn(
-                "font-black tracking-tight mb-5 leading-[1.1] text-white",
+                "font-black tracking-tight mb-5 leading-tight text-white",
                 index === 0 
                   ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl" 
                   : "text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
               )}>
                 {section.subtitle ? (
-                  <div className="space-y-1.5">
-                    <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent block">
+                  <div className="space-y-2">
+                    <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent block pb-2 leading-tight">
                       {section.title}
                     </span>
-                    <span className="text-cyan-400 text-[0.55em] font-semibold tracking-wide uppercase block">
+                    <span className="text-cyan-400 text-[0.55em] font-bold tracking-wider uppercase block pb-1">
                       {section.subtitle}
                     </span>
                   </div>
                 ) : (
-                  <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent block pb-2 leading-tight">
                     {section.title}
                   </span>
                 )}

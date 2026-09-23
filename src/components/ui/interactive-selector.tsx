@@ -107,28 +107,28 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
   }, [options]);
 
   return (
-    <section className="relative py-24 px-4 bg-slate-950 text-white overflow-hidden border-t border-slate-900">
+    <section className="relative py-28 px-4 bg-[#070d1e] text-white overflow-hidden border-t border-white/10">
       {/* Background Ambient Glows */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Header Section */}
-        <div className="w-full max-w-3xl mb-12 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
+        <div className="w-full max-w-3xl mb-14 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
             Adaptável a Qualquer Segmento
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight">
             {title}
           </h2>
-          <p className="text-base sm:text-lg text-slate-400 font-normal max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-200 font-medium max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
         </div>
 
         {/* Desktop / Tablet Interactive Accordion */}
-        <div className="hidden sm:flex options w-full max-w-5xl h-[460px] items-stretch overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md shadow-2xl relative">
+        <div className="hidden sm:flex options w-full max-w-5xl h-[480px] items-stretch overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-900/90 backdrop-blur-md shadow-2xl relative">
           {options.map((option, index) => {
             const isActive = activeIndex === index;
             const isAnimated = animatedOptions.includes(index);
@@ -144,12 +144,12 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                   opacity: isAnimated ? 1 : 0,
                   transform: isAnimated ? "translateX(0)" : "translateX(-30px)",
                   minWidth: "70px",
-                  borderColor: isActive ? "rgba(6, 182, 212, 0.8)" : "rgba(51, 65, 85, 0.4)",
+                  borderColor: isActive ? "rgba(6, 182, 212, 0.9)" : "rgba(71, 85, 105, 0.5)",
                   borderRightWidth: index === options.length - 1 ? 0 : "1px",
                   borderStyle: "solid",
                   flex: isActive ? "6 1 0%" : "1 1 0%",
                   zIndex: isActive ? 10 : 1,
-                  boxShadow: isActive ? "0 25px 50px -12px rgba(0, 0, 0, 0.8)" : "none"
+                  boxShadow: isActive ? "0 25px 50px -12px rgba(0, 0, 0, 0.85)" : "none"
                 }}
                 onClick={() => handleOptionClick(index)}
               >
@@ -158,15 +158,15 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                   className="absolute inset-0 transition-opacity duration-700 pointer-events-none"
                   style={{
                     background: isActive
-                      ? "linear-gradient(to top, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.65) 45%, rgba(2, 6, 23, 0.2) 100%)"
-                      : "linear-gradient(to top, rgba(2, 6, 23, 0.92) 0%, rgba(2, 6, 23, 0.75) 100%)"
+                      ? "linear-gradient(to top, rgba(7, 13, 30, 0.98) 0%, rgba(7, 13, 30, 0.75) 50%, rgba(7, 13, 30, 0.3) 100%)"
+                      : "linear-gradient(to top, rgba(7, 13, 30, 0.95) 0%, rgba(7, 13, 30, 0.8) 100%)"
                   }}
                 />
 
                 {/* Content Block */}
                 <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end pointer-events-none z-10">
                   <div className="flex items-center gap-3.5 mb-2">
-                    <div className="min-w-[44px] max-w-[44px] h-[44px] flex items-center justify-center rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 shadow-lg shrink-0 transition-transform duration-300">
+                    <div className="min-w-[44px] max-w-[44px] h-[44px] flex items-center justify-center rounded-xl bg-slate-900/95 backdrop-blur-md border border-cyan-500/40 shadow-lg shrink-0 transition-transform duration-300">
                       {option.icon}
                     </div>
 
@@ -178,10 +178,10 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                         whiteSpace: "nowrap"
                       }}
                     >
-                      <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 block">
+                      <span className="text-xs font-bold uppercase tracking-wider text-cyan-300 block">
                         {option.category}
                       </span>
-                      <h3 className="font-bold text-xl text-white drop-shadow-md">
+                      <h3 className="font-extrabold text-xl text-white drop-shadow-md">
                         {option.title}
                       </h3>
                     </div>
@@ -191,12 +191,12 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                   <div
                     className="transition-all duration-700 overflow-hidden"
                     style={{
-                      maxHeight: isActive ? "160px" : "0px",
+                      maxHeight: isActive ? "180px" : "0px",
                       opacity: isActive ? 1 : 0,
                       transform: isActive ? "translateY(0)" : "translateY(15px)"
                     }}
                   >
-                    <p className="text-sm text-slate-300 font-normal mb-3 max-w-lg leading-relaxed">
+                    <p className="text-sm text-slate-100 font-normal mb-3.5 max-w-lg leading-relaxed">
                       {option.description}
                     </p>
 
@@ -204,7 +204,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                       {option.tags.map((tag, tagIdx) => (
                         <span
                           key={tagIdx}
-                          className="px-2.5 py-0.5 rounded-md bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium"
+                          className="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-600 text-slate-100 text-xs font-semibold"
                         >
                           {tag}
                         </span>
@@ -216,7 +216,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({
                 {/* Vertical label for inactive tabs */}
                 {!isActive && (
                   <div className="absolute inset-x-0 bottom-24 flex items-center justify-center pointer-events-none">
-                    <span className="text-xs font-semibold text-slate-400 tracking-wider rotate-[-90deg] whitespace-nowrap drop-shadow">
+                    <span className="text-xs font-bold text-slate-200 tracking-wider rotate-[-90deg] whitespace-nowrap drop-shadow">
                       {option.title}
                     </span>
                   </div>

@@ -204,29 +204,40 @@ export function PricingSection() {
 
         {/* FAQ Accordion */}
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-white">
-            Perguntas Frequentes
-          </h3>
-          <div className="space-y-3">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="rounded-2xl bg-slate-900/60 border border-white/10 overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-white hover:text-cyan-300 transition-colors"
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-2">Tire suas dúvidas</span>
+            <h3 className="text-3xl sm:text-4xl font-black text-white">
+              Perguntas Frequentes
+            </h3>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={index}
+                  className={cn(
+                    "rounded-2xl border transition-all duration-300 overflow-hidden shadow-lg",
+                    isOpen 
+                      ? "bg-slate-900 border-cyan-500/50 shadow-cyan-950/30" 
+                      : "bg-slate-900/80 border-slate-800 hover:border-slate-700"
+                  )}
                 >
-                  <span>{faq.q}</span>
-                  <ChevronDown className={cn("w-5 h-5 text-slate-400 transition-transform duration-200 shrink-0", openFaq === index && "rotate-180 text-cyan-400")} />
-                </button>
-                {openFaq === index && (
-                  <div className="px-5 pb-5 text-slate-300 text-sm leading-relaxed border-t border-white/5 pt-3">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-white hover:text-cyan-300 transition-colors cursor-pointer"
+                  >
+                    <span className="leading-snug">{faq.q}</span>
+                    <ChevronDown className={cn("w-5 h-5 text-cyan-400 transition-transform duration-300 shrink-0", isOpen && "rotate-180 text-cyan-300")} />
+                  </button>
+                  {isOpen && (
+                    <div className="px-6 pb-6 text-slate-100 text-sm sm:text-base leading-relaxed border-t border-slate-800/80 pt-4 bg-slate-950/70 font-normal">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 

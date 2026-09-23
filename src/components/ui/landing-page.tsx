@@ -197,6 +197,7 @@ export function ScrollGlobe({
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const animationFrameId = useRef<number | undefined>(undefined);
+  const [isInView, setIsInView] = useState(true);
 
   const calculatedPositions = useMemo(() => {
     return globeConfig.positions.map(pos => ({
@@ -212,6 +213,12 @@ export function ScrollGlobe({
     const progress = Math.min(Math.max(scrollTop / docHeight, 0), 1);
     
     setScrollProgress(progress);
+
+    if (containerRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const inView = containerRect.bottom > 200 && containerRect.top < window.innerHeight - 100;
+      setIsInView(inView);
+    }
 
     const viewportCenter = window.innerHeight / 2;
     let newActiveSection = 0;
@@ -320,7 +327,10 @@ export function ScrollGlobe({
       </div>
 
       {/* Enhanced Floating Right Navigation with auto-hiding labels */}
-      <div className="hidden sm:flex fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-40">
+      <div className={cn(
+        "hidden sm:flex fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-40 transition-all duration-500",
+        isInView ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      )}>
         <div className="space-y-4 lg:space-y-6">
           {methodSections.map((section, index) => {
             const isCurrent = activeSection === index;
@@ -367,7 +377,10 @@ export function ScrollGlobe({
 
       {/* Ultra-smooth 3D Globe with responsive scaling & position shifts */}
       <div
-        className="fixed top-0 left-0 z-10 pointer-events-none will-change-transform transition-all duration-[1400ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
+        className={cn(
+          "fixed top-0 left-0 z-10 pointer-events-none will-change-transform transition-all duration-[1200ms] ease-[cubic-bezier(0.23,1,0.32,1)]",
+          isInView ? "opacity-100" : "opacity-0"
+        )}
         style={{
           transform: globeTransform,
           filter: `opacity(${activeSection === 3 ? 0.35 : 0.95})`,
